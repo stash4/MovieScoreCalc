@@ -6,9 +6,11 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-EIGA = 'eiga.com'
-YAHOO = 'movies.yahoo.co.jp'
-FILMARKS = 'filmarks.com'
+sites = {
+    EIGA: 'eiga.com',
+    YAHOO: 'movies.yahoo.co.jp',
+    FILMARKS: 'filmarks.com'
+}
 
 
 def get_page(text, site):
@@ -29,7 +31,7 @@ def eiga_com(movie_name):
     '''
     映画.comから作品のタイトル、公開日、スコア、レビュー数を取得する。
     '''
-    res = get_page(movie_name, EIGA)
+    res = get_page(movie_name, sites['EIGA'])
 
     soup = BeautifulSoup(res.text, 'html.parser')
     # タイトル
@@ -54,7 +56,7 @@ def movies_yahoo(movie_name):
     '''
     Yahoo!映画から作品のスコア、レビュー数を取得する。
     '''
-    res = get_page(movie_name, YAHOO)
+    res = get_page(movie_name, sites['YAHOO'])
 
     soup = BeautifulSoup(res.text, 'html.parser')
     # レビュースコア
@@ -75,7 +77,7 @@ def filmarks_com(movie_name):
     '''
     Filmarksから作品のスコア、レビュー数を取得する。
     '''
-    res = get_page(movie_name, FILMARKS)
+    res = get_page(movie_name, sites['FILMARKS'])
 
     soup = BeautifulSoup(res.text, 'html.parser')
     # レビュースコアとレビュー数
