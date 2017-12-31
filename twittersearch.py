@@ -51,7 +51,7 @@ def search(words, since='', count=100):
             break
         else:
             params = urllib.parse.parse_qs(
-                r['search_metadata']['next_results'][1:])
+                res_json['search_metadata']['next_results'][1:])
             params['tweet_mode'] = 'extended'
 
     return results
