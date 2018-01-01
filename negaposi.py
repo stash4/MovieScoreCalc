@@ -32,7 +32,7 @@ def set_dict():
         for line in f.readlines():
             line = line.split('\t')
             word = line[1].replace(' ', '').replace('\n', '')
-            value = POSI if 'ポジ' in line[0] else NEGA
+            value = score['POSI'] if 'ポジ' in line[0] else score['NEGA']
             pn_dict[word] = value
 
     with open(pn_path['NOUMS'], 'r') as f:
@@ -40,11 +40,11 @@ def set_dict():
             line = line.split('\t')
             word = line[0]
             if line[1] == 'p':
-                value = POSI
+                value = score['POSI']
             elif line[1] == 'n':
-                value = NEGA
+                value = score['NEGA']
             else:
-                value = EQUAL
+                value = score['EQUAL']
             pn_dict[word] = value
 
     return pn_dict
