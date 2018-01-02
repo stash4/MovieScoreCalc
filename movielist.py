@@ -1,8 +1,14 @@
+'''
+TOHOシネマズの上映中作品リストを取得する。
+'''
 import tohocinemas
 import unicodedata
 
 
 def movie_list():
+    '''
+    TOHOシネマズで上映中の作品の、タイトルと説明を取得する。
+    '''
     showing = tohocinemas.showing_list()
     movies = []
     for movie in showing['data']:
