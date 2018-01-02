@@ -20,7 +20,7 @@ def search(words, since='', count=100):
     '''
     キーワード、期間、ツイート数を指定してTwitter検索を行う。
     '''
-    url = url = 'https://api.twitter.com/1.1/search/tweets.json'
+    url = 'https://api.twitter.com/1.1/search/tweets.json'
     if since:
         since = f'since: {since}'
     q = f'{words} -RT {since}'
