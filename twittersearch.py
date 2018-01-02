@@ -38,8 +38,8 @@ def search(words, since='', count=100):
         'count': res_count
     }
 
+    # 指定された件数までツイート検索結果取得
     results = []
-
     for _ in range(req_count):
         res = twitter.get(url, params=params)
         res_json = res.json()
