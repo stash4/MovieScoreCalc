@@ -28,6 +28,7 @@ def set_dict():
     '''
     pn_dict = {}
 
+    # 日本語評価極性辞書（用言編）
     with open(pn_path['VERBS'], 'r') as f:
         for line in f.readlines():
             line = line.split('\t')
@@ -35,6 +36,7 @@ def set_dict():
             value = score['POSI'] if 'ポジ' in line[0] else score['NEGA']
             pn_dict[word] = value
 
+    # 日本語評価極性辞書（名詞編）
     with open(pn_path['NOUMS'], 'r') as f:
         for line in f.readlines():
             line = line.split('\t')
@@ -54,8 +56,8 @@ def get_nega_posi(text, pn_dict):
     '''
     辞書を指定して、ネガポジ判定を行う。
     '''
-    words = []
     # 形態素解析
+    words = []
     lines = mcb.parse(text).split('\n')
     for line in lines:
         line = line.split('\t')
