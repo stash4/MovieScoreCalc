@@ -6,6 +6,9 @@ import negaposi
 
 
 def format_text(text):
+    '''
+    文字列から改行文字とURLを除去
+    '''
     fmt_text = text.replace('\r', ' ').replace('\n', ' ').replace(
         '\t', ' ').replace('\f', ' ').replace('\v', ' ')
     fmt_text = re.sub(
@@ -13,18 +16,22 @@ def format_text(text):
 
 
 def main():
+    # 作品リスト取得
     movies = movielist.movie_list()
     for movie in movies:
+        # 各作品のレビュースコア取得
         name = movie['name'].replace(' ', '+')
         movie['eiga'] = moviescores.eiga_com(name)
         movie['yahoo'] = moviescores.movies_yahoo(name)
         movie['filmarks'] = moviescores.filmarks_com(name)
 
+        # 各作品に関するツイート取得
         opt = '-source:filmarks -source:twittbot.net -filter:verified'
         q = f'{movie['name']} {opt}'
         tweets = twittersearch.search(
             q, since=movie['eiga']['date'], count=200)
 
+        # 各ツイートのネガポジ判定
         movie['tweets'] = []
         pn_dict = negaposi.set_dict()
         for tweet in tweets:
