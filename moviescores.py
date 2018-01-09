@@ -31,7 +31,7 @@ def eiga_com(movie_name):
     '''
     映画.comから作品のタイトル、公開日、スコア、レビュー数を取得する。
     '''
-    res = get_page(movie_name, sites['EIGA'])
+    res = get_page(f'{movie_name}+作品情報', sites['EIGA'])
 
     soup = BeautifulSoup(res.text, 'html.parser')
     # タイトル
