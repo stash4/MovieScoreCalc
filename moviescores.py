@@ -71,7 +71,6 @@ def movies_yahoo(movie_name):
     Yahoo!映画から作品のスコア、レビュー数を取得する。
     '''
     try:
-        # res = get_page(f'{movie_name} 作品', sites['YAHOO'])
         q = urllib.parse.quote(movie_name)
         result = requests.get(f'https://movies.yahoo.co.jp/search/?query={q}')
         result_sp = BeautifulSoup(result.text, 'html.parser')
@@ -84,6 +83,7 @@ def movies_yahoo(movie_name):
         # レビュースコア
         rating = detail_sp.find(itemprop='ratingValue').string
         count = detail_sp.find(class_='rating-score').find(class_='text-xsmall').string
+        count = count.replace(',', '')
         # レビュー数
         pattern = r'\d+'
         count = re.search(pattern, count).group(0)
