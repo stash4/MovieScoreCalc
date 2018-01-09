@@ -79,7 +79,7 @@ def main():
         twitter_c = movie['twitter']['count']
         twitter_w = movie['twitter']['rating'] * twitter_c
         count = eiga_c + yahoo_c + filmarks_c + twitter_c
-        rating = (eiga_w + yahoo_w + filmarks_w + twitter_w) / counts
+        rating = (eiga_w + yahoo_w + filmarks_w + twitter_w) / count
         movie['total'] = {'rating': rating, 'count': count}
 
 
