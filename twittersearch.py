@@ -22,7 +22,7 @@ def search(words, since='', count=100):
     '''
     url = 'https://api.twitter.com/1.1/search/tweets.json'
     if since:
-        since = f'since: {since}'
+        since = f'since:{since}'
     q = f'{words} -RT {since}'
     if count > 100:
         res_count = 100
