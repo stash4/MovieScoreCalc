@@ -15,6 +15,7 @@ def format_text(text):
         '\t', ' ').replace('\f', ' ').replace('\v', ' ')
     fmt_text = re.sub(
         r'https?(:\/\/[-_\.!~*\'()a-zA-Z0-9;\/?:\@&=\+\$,%#]+)', '', fmt_text)
+    return fmt_text
 
 
 def normalize_num(num_list, maximum=1):
