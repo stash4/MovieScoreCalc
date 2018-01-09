@@ -61,7 +61,7 @@ def main():
         scores = []
         for tweet in movie['tweet']:
             scores.append(tweet['score'])
-        n_scores = normalise_num(scores)
+        n_scores = normalize_num(scores, maximum=5)
         s = sum(n_scores)
         N = len(n_scores)
         mean = s / N
