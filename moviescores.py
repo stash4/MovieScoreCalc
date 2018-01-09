@@ -16,16 +16,24 @@ sites = {
 def get_page(text, site):
     '''
     キーワードとサイトを指定してGoogle検索でトップのページを取得する。
-    I'm Feeling Luckeyを利用。
+    # I'm Feeling Luckeyを利用。
     '''
     BASE_URL = 'https://www.google.co.jp/search'
     q = text.replace(' ', '+')
-    query = f'?q={q}+site%3A{site}&ie=UTF-8&btnI=I%27m+Feeling+Lucky'
+    # query = f'?q={q}+site%3A{site}&ie=UTF-8&btnI=I%27m+Feeling+Lucky'
+    query = f'?q={q}+site%3A{site}&ie=UTF-8'
     url = BASE_URL + query
     print(url)
     res = requests.get(url)
     res.encoding = res.apparent_encoding
-    return res
+
+    google_soup = BeautifulSoup(res.text, 'html.parser')
+    href = google_soup.find(class_='r').select('a')[0].get('href')
+    pattern = r'http(s)?://' + site + r'/movie(s)?(/[a-zA-Z0-9%]*)?/[0-9]*'
+    href = re.search(pattern, href).group(0)
+    print(href)
+    ret = requests.get(href)
+    return ret
 
 
 def eiga_com(movie_name):
