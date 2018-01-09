@@ -66,7 +66,8 @@ def eiga_com(movie_name):
             'name': name,
             'date': date,
             'rating': float(rating),
-            'count': int(count)
+            'count': int(count),
+            'url': detail.url
         }
     except Exception as e:
         ret = {}
@@ -97,7 +98,8 @@ def movies_yahoo(movie_name):
 
         ret = {
             'rating': float(rating),
-            'count': int(count)
+            'count': int(count),
+            'url': detail.url
         }
     except Exception as e:
         ret = {}
@@ -124,7 +126,8 @@ def filmarks_com(movie_name):
 
         ret = {
             'rating': float(ratings[1]),
-            'count': int(ratings[0])
+            'count': int(ratings[0]),
+            'url': detail.url
         }
     except Exception as e:
         ret = {}
