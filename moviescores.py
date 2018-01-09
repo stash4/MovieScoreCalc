@@ -41,7 +41,7 @@ def eiga_com(movie_name):
     '''
     映画.comから作品のタイトル、公開日、スコア、レビュー数を取得する。
     '''
-    res = get_page(f'{movie_name}+作品情報', sites['EIGA'])
+    res = get_page(f'{movie_name} 作品情報', sites['EIGA'])
 
     soup = BeautifulSoup(res.text, 'html.parser')
     # タイトル
@@ -66,7 +66,7 @@ def movies_yahoo(movie_name):
     '''
     Yahoo!映画から作品のスコア、レビュー数を取得する。
     '''
-    res = get_page(f'{movie_name}+作品', sites['YAHOO'])
+    res = get_page(f'{movie_name} 作品', sites['YAHOO'])
 
     soup = BeautifulSoup(res.text, 'html.parser')
     # レビュースコア
@@ -87,7 +87,7 @@ def filmarks_com(movie_name):
     '''
     Filmarksから作品のスコア、レビュー数を取得する。
     '''
-    res = get_page(f'{movie_name}+映画情報', sites['FILMARKS'])
+    res = get_page(f'{movie_name} 映画情報', sites['FILMARKS'])
 
     soup = BeautifulSoup(res.text, 'html.parser')
     # レビュースコアとレビュー数
