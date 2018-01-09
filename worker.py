@@ -26,7 +26,7 @@ def normalize_num(num_list, maximum=1):
     s = numpy.array(num_list)
     smin = s.min()
     smax = s.max()
-    n_s = (s - smax).astype(float) / (smax - smin).astype(float)
+    n_s = (s - smin).astype(float) / (smax - smin).astype(float)
     ret = list(n_s * maximum)
     return ret
 
