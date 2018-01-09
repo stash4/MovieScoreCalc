@@ -24,7 +24,8 @@ def get_page(text, site):
     query = f'?q={q}+site:{site}&ie=UTF-8'
     url = BASE_URL + query
     print(url)
-    res = requests.get(url)
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2)'}
+    res = requests.get(url, headers=headers)
     res.encoding = res.apparent_encoding
 
     google_soup = BeautifulSoup(res.text, 'html.parser')
