@@ -75,7 +75,7 @@ def main():
         s = sum(n_scores)
         N = len(n_scores)
         mean = s / N
-        movie['twitter'] = {'rating': mean, 'count': N}
+        movie['twitter'] = {'rating': round(mean, 2), 'count': N}
 
         # 総合スコア計算
         count = 0
