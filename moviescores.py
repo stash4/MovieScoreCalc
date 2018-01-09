@@ -5,7 +5,6 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-import urllib.parse
 
 sites = {
     'EIGA': 'eiga.com',
@@ -20,9 +19,9 @@ def get_page(text, site):
     # I'm Feeling Luckeyを利用。
     '''
     BASE_URL = 'https://www.google.co.jp/search'
-    q = urllib.parse.quote(text)
+    q = text.replace(' ', '+').replace('&', '%26')
     # query = f'?q={q}+site%3A{site}&ie=UTF-8&btnI=I%27m+Feeling+Lucky'
-    query = f'?q={q}+site%3A{site}&ie=UTF-8'
+    query = f'?q={q}+site:{site}&ie=UTF-8'
     url = BASE_URL + query
     print(url)
     res = requests.get(url)
