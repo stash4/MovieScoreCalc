@@ -36,6 +36,9 @@ def main():
         pn_dict = negaposi.set_dict()
         for tweet in tweets:
             if not tweet['entities']['urls']:
+                sc_name = tweet['user']['screen_name']
+                tweet_id = tweet['id_str']
+                tweet_url = f'https://https://twitter.com/{sc_name}/{tweet_id}'
                 tweet_text = format_text(tweet['full_text'])
                 negaposi.get_nega_posi(tweet_text, pn_dict)
                 movie['tweets'].append({'text': tweet_text, 'score': score})
