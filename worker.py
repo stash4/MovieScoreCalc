@@ -51,8 +51,8 @@ def main():
         # 各作品に関するツイート取得
         opt = '-source:filmarks -source:twittbot.net -filter:verified'
         q = f'{movie["name"]} {opt}'
-        tweets = twittersearch.search(
-            q, since=movie['eiga']['date'], count=200)
+        since_date = movie['eiga']['date'] if 'eiga' in movie else ''
+        tweets = twittersearch.search(q, since=since_date, count=200)
 
         # 各ツイートのネガポジ判定
         movie['tweets'] = []
