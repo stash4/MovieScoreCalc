@@ -68,7 +68,7 @@ def main():
                 tw = {'url': tw_url, 'text': tw_text, 'score': score}
                 movie['tweets'].append(tw)
 
-    # ツイートのスコア計算
+        # ツイートのスコア計算
         scores = []
         for tweet in movie['tweets']:
             scores.append(tweet['score'])
@@ -99,13 +99,14 @@ def main():
             rating_w += movie['twitter']['rating'] * twitter_c
         rating = round((rating_w / count), 2)
         movie['total'] = {'rating': rating, 'count': count}
-    
+
     # 総合スコアの降順にソート
-    movies.sort(key=lambda x:x['total']['rating'])
+    movies.sort(key=lambda x: x['total']['rating'])
     movies.reverse()
 
     with open('movies.pickle', 'wb') as f:
         pickle.dump(movies, f)
+
 
 if __name__ == '__main__':
     main()
