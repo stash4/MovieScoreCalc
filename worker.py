@@ -36,9 +36,15 @@ def main():
     for movie in movies:
         # 各作品のレビュースコア取得
         name = movie['name']
-        movie['eiga'] = moviescores.eiga_com(name)
-        movie['yahoo'] = moviescores.movies_yahoo(name)
-        movie['filmarks'] = moviescores.filmarks_com(name)
+        eiga = moviescores.eiga_com(name)
+        if eiga:
+            movie['eiga'] = eiga
+        yahoo = moviescores.movies_yahoo(name)
+        if yahoo:
+            movie['yahoo'] = yahoo
+        filmarks = moviescores.filmarks_com(name)
+        if filmarks:
+            movie['filmarks'] = filmarks
 
         # 各作品に関するツイート取得
         opt = '-source:filmarks -source:twittbot.net -filter:verified'
