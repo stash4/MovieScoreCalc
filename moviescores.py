@@ -47,8 +47,8 @@ def eiga_com(movie_name):
     ret = {
         'name': name,
         'date': date,
-        'rating': rating,
-        'count': count
+        'rating': float(rating),
+        'count': int(count)
     }
     return ret
 
@@ -68,8 +68,8 @@ def movies_yahoo(movie_name):
     count = re.search(pattern, count).group(0)
 
     ret = {
-        'rating': rating,
-        'count': count
+        'rating': float(rating),
+        'count': int(count)
     }
     return ret
 
@@ -87,7 +87,7 @@ def filmarks_com(movie_name):
     ratings = re.findall(pattern, desc)
 
     ret = {
-        'rating': ratings[1],
-        'count': ratings[0]
+        'rating': float(ratings[1]),
+        'count': int(ratings[0])
     }
     return ret
