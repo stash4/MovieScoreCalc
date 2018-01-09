@@ -99,6 +99,10 @@ def main():
             rating_w += movie['twitter']['rating'] * twitter_c
         rating = round((rating_w / count), 2)
         movie['total'] = {'rating': rating, 'count': count}
+    
+    # 総合スコアの降順にソート
+    movies.sort(key=lambda x:x['total']['rating'])
+    movies.reverse()
 
     with open('movies.pickle', 'wb') as f:
         pickle.dump(movies, f)
