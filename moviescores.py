@@ -7,36 +7,6 @@ from bs4 import BeautifulSoup
 import re
 import urllib.parse
 
-sites = {
-    'EIGA': 'eiga.com',
-    'YAHOO': 'movies.yahoo.co.jp',
-    'FILMARKS': 'filmarks.com'
-}
-
-
-def get_page(text, site):
-    '''
-    キーワードとサイトを指定してGoogle検索でトップのページを取得する。
-    # I'm Feeling Luckeyを利用。
-    '''
-    BASE_URL = 'https://www.google.co.jp/search'
-    q = text.replace(' ', '+').replace('&', '%26')
-    # query = f'?q={q}+site%3A{site}&ie=UTF-8&btnI=I%27m+Feeling+Lucky'
-    query = f'?q={q}+site:{site}&ie=UTF-8'
-    url = BASE_URL + query
-    print(url)
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2)'}
-    res = requests.get(url, headers=headers)
-    res.encoding = res.apparent_encoding
-
-    google_soup = BeautifulSoup(res.text, 'html.parser')
-    href = google_soup.find(class_='r').select('a')[0].get('href')
-    pattern = r'http(s)?://' + site + r'/movie(s)?(/[a-zA-Z0-9%]*)?/[0-9]*'
-    href = re.search(pattern, href).group(0)
-    print(href)
-    ret = requests.get(href)
-    return ret
-
 
 def eiga_com(movie_name):
     '''
