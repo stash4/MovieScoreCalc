@@ -1,5 +1,6 @@
 import re
 import numpy
+import pickle
 import movielist
 import moviescores
 import twittersearch
@@ -40,7 +41,7 @@ def main():
 
         # 各作品に関するツイート取得
         opt = '-source:filmarks -source:twittbot.net -filter:verified'
-        q = f'{movie['name']} {opt}'
+        q = f'{movie["name"]} {opt}'
         tweets = twittersearch.search(
             q, since=movie['eiga']['date'], count=200)
 
