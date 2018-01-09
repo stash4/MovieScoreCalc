@@ -60,8 +60,6 @@ def eiga_com(movie_name):
             'count': int(count)
         }
     except Exception as e:
-        print(e.args)
-        print(e.message)
         ret = {}
     return ret
 
@@ -87,8 +85,6 @@ def movies_yahoo(movie_name):
             'count': int(count)
         }
     except Exception as e:
-        print(e.args)
-        print(e.message)
         ret = {}
     return ret
 
@@ -111,7 +107,5 @@ def filmarks_com(movie_name):
             'count': int(ratings[0])
         }
     except Exception as e:
-        print(e.args)
-        print(e.message)
         ret = {}
     return ret
