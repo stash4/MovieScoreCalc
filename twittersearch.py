@@ -26,7 +26,7 @@ def search(words, since='', count=100):
     q = f'{words} -RT {since}'
     if count > 100:
         res_count = 100
-        req_count = count / 100
+        req_count = int(count / 100)
     else:
         res_count = count
         req_count = 1
