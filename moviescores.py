@@ -22,6 +22,7 @@ def get_page(text, site):
     q = text.replace(' ', '+')
     query = f'?q={q}+site%3A{site}&ie=UTF-8&btnI=I%27m+Feeling+Lucky'
     url = BASE_URL + query
+    print(url)
     res = requests.get(url)
     res.encoding = res.apparent_encoding
     return res
@@ -37,7 +38,7 @@ def eiga_com(movie_name):
     # タイトル
     name = soup.find(itemprop='name').string
     # 公開日
-    date = soup.find(itemprop='datePiublished').get('content')
+    date = soup.find(itemprop='datePublished').get('content')
     # レビュースコア
     rating = soup.find(itemprop='ratingValue').string
     # レビュー数
