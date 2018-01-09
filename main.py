@@ -16,6 +16,18 @@ def format_text(text):
         r'https?(:\/\/[-_\.!~*\'()a-zA-Z0-9;\/?:\@&=\+\$,%#]+)', '', fmt_text)
 
 
+def normalize_num(num_list, maximum=1):
+    '''
+    最大値を指定して数値を正規化
+    '''
+    s = numpy.array(num_list)
+    smin = s.min()
+    smax = s.max()
+    n_s = (s - smax).astype(float) / (smax - smin).astype(float)
+    ret = list(n_s * maximum)
+    return ret
+
+
 def main():
     # 作品リスト取得
     movies = movielist.movie_list()
@@ -49,11 +61,7 @@ def main():
         scores = []
         for tweet in movie['tweet']:
             scores.append(tweet['score'])
-        s = numpy.array(scores)
-        smin = s.min()
-        smax = s.max()
-        n_scores = (s - smax).astype(float) / (smax - smin).astype(float)
-        scores = list(n_scores * 5)
+        n_scores = normalise_num(scores)
 
 
 if __name__ == '__main__':
