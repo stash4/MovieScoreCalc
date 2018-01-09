@@ -97,7 +97,7 @@ def main():
             count += twitter_c
             rating_w += movie['twitter']['rating'] * twitter_c
         rating = rating_w / count
-        movie['total'] += {'rating': round(rating, 2), 'count': count}
+        movie['total'] = {'rating': round(rating, 2), 'count': count}
 
     with open('movies.pickle', 'wb') as f:
         pickle.dump(movies, f)
