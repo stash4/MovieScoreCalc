@@ -44,6 +44,7 @@ def eiga_com(movie_name):
     '''
     try:
         # サイト内検索
+        movie_name = movie_name.replace('/', ' ')
         q = urllib.parse.quote(movie_name)
         result = requests.get(f'http://eiga.com/search/{q}/')
         result_sp = BeautifulSoup(result.text, 'html.parser')
