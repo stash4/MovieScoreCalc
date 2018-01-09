@@ -15,6 +15,8 @@ def movie_list():
         name = unicodedata.normalize('NFKC', movie['name'])
         desc = tohocinemas.movie_desc(movie['mcode'])
         if '<br>' in desc:
+            if '正式タイトル：' in desc:
+                name, desc = desc.split('正式タイトル：')[1].split('<br>')
             desc = desc.split('<br>')[1]
         movies.append({'name': name, 'desc': desc})
 
