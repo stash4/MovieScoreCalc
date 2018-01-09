@@ -21,7 +21,7 @@ def get_page(text, site):
     BASE_URL = 'https://www.google.co.jp/search'
     q = text.replace(' ', '+')
     query = f'?q={q}+site%3A{site}&ie=UTF-8&btnI=I%27m+Feeling+Lucky'
-    url = BASE_URL + q
+    url = BASE_URL + query
     res = requests.get(url)
     res.encoding = res.apparent_encoding
     return res
