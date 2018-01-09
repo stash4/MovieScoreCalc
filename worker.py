@@ -93,7 +93,7 @@ def main():
             count += filmarks_c
             rating_w += movie['filmarks']['rating'] * filmarks_c
         if 'twitter' in movie:
-            twitter_c += movie['twitter']['count']
+            twitter_c = movie['twitter']['count']
             count += twitter_c
             rating_w += movie['twitter']['rating'] * twitter_c
         rating = rating_w / count
