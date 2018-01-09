@@ -62,6 +62,23 @@ def main():
         for tweet in movie['tweet']:
             scores.append(tweet['score'])
         n_scores = normalise_num(scores)
+        s = sum(n_scores)
+        N = len(n_scores)
+        mean = s / N
+        movie['twitter'] = {'rating': mean, 'count': N}
+
+        # 総合スコア計算
+        eiga_c = movie['eiga']['count']
+        eiga_w = movie['eiga']['rating'] * eiga_c
+        yahoo_c = movie['yahoo']['count']
+        yahoo_w = movie['yahoo']['rating'] * yahoo_c
+        filmarks_c = movie['filmarks']['count']
+        filmarks_w = movie['filmarks']['rating'] * filmarks_c
+        twitter_c = movie['twitter']['count']
+        twitter_w = movie['twitter']['rating'] * twitter_c
+        count = eiga_c + yahoo_c + filmarks_c + twitter_c
+        rating = (eiga_w + yahoo_w + filmarks_w + twitter_w) / counts
+        movie['total'] = {'rating': rating, 'count': count}
 
 
 if __name__ == '__main__':
