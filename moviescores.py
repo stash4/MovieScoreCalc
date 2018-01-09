@@ -77,7 +77,7 @@ def filmarks_com(movie_name):
     '''
     Filmarksから作品のスコア、レビュー数を取得する。
     '''
-    res = get_page(movie_name, sites['FILMARKS'])
+    res = get_page(f'{movie_name}+映画情報', sites['FILMARKS'])
 
     soup = BeautifulSoup(res.text, 'html.parser')
     # レビュースコアとレビュー数
