@@ -76,16 +76,25 @@ def main():
         movie['twitter'] = {'rating': mean, 'count': N}
 
         # 総合スコア計算
-        eiga_c = movie['eiga']['count']
-        eiga_w = movie['eiga']['rating'] * eiga_c
-        yahoo_c = movie['yahoo']['count']
-        yahoo_w = movie['yahoo']['rating'] * yahoo_c
-        filmarks_c = movie['filmarks']['count']
-        filmarks_w = movie['filmarks']['rating'] * filmarks_c
-        twitter_c = movie['twitter']['count']
-        twitter_w = movie['twitter']['rating'] * twitter_c
-        count = eiga_c + yahoo_c + filmarks_c + twitter_c
-        rating = (eiga_w + yahoo_w + filmarks_w + twitter_w) / count
+        count = 0
+        rating_w = 0
+        if 'eiga' in movie:
+            eiga_c = movie['eiga']['count']
+            count += eiga_c
+            rating_w = movie['eiga']['rating'] * eiga_c
+        if 'yahoo' in movie:
+            yahoo_c = movie['yahoo']['count']
+            count += yahoo_c
+            rating_w = movie['yahoo']['rating'] * yahoo_c
+        if 'filmarks' in movie:
+            filmarks_c = movie['filmarks']['count']
+            count += filmarks_c
+            rating_w = movie['filmarks']['rating'] * filmarks_c
+        if 'twitter' in movie:
+            twitter_c = movie['twitter']['count']
+            count += twitter_c
+            rating_w = movie['twitter']['rating'] * twitter_c
+        rating = rating_w / count
         movie['total'] = {'rating': round(rating, 2), 'count': count}
 
 
