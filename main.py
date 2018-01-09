@@ -41,7 +41,8 @@ def main():
                 tw_url = f'https://https://twitter.com/{sc_name}/{tweet_id}'
                 tw_text = format_text(tweet['full_text'])
                 negaposi.get_nega_posi(tweet_text, pn_dict)
-                movie['tweets'].append({'url': tw_url, 'text': tw_text, 'score': score})
+                tw = {'url': tw_url, 'text': tw_text, 'score': score}
+                movie['tweets'].append(tw)
 
 
 if __name__ == '__main__':
