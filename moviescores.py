@@ -84,7 +84,7 @@ def filmarks_com(movie_name):
     # レビュースコアとレビュー数
     desc = soup.find(property='og:description').get('content')
     pattern = r'\d+(?:\.\d+)?'
-    ratings = re.findall(pattern, c)
+    ratings = re.findall(pattern, desc)
 
     ret = {
         'rating': ratings[1],
