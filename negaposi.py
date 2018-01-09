@@ -74,7 +74,6 @@ def get_nega_posi(text, pn_dict):
     pn_score = 0
     for word in words:
         if word in pn_dict.keys():
-            print(word, pn_dict[word])
             pn_score += pn_dict[word]
 
     return pn_score
