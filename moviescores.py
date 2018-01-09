@@ -7,9 +7,9 @@ from bs4 import BeautifulSoup
 import re
 
 sites = {
-    EIGA: 'eiga.com',
-    YAHOO: 'movies.yahoo.co.jp',
-    FILMARKS: 'filmarks.com'
+    'EIGA': 'eiga.com',
+    'YAHOO': 'movies.yahoo.co.jp',
+    'FILMARKS': 'filmarks.com'
 }
 
 
