@@ -35,7 +35,7 @@ def main():
     movies = movielist.movie_list()
     for movie in movies:
         # 各作品のレビュースコア取得
-        name = movie['name'].replace(' ', '+')
+        name = movie['name']
         movie['eiga'] = moviescores.eiga_com(name)
         movie['yahoo'] = moviescores.movies_yahoo(name)
         movie['filmarks'] = moviescores.filmarks_com(name)
