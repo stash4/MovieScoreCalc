@@ -28,6 +28,7 @@ def normalize_num(num_list, maximum=1):
     smax = s.max()
     n_s = (s - smin).astype(float) / (smax - smin).astype(float)
     ret = list(n_s * maximum)
+    ret = [float(n) for n in ret]
     return ret
 
 
@@ -74,8 +75,8 @@ def main():
         n_scores = normalize_num(scores, maximum=5)
         s = sum(n_scores)
         N = len(n_scores)
-        mean = s / N
-        movie['twitter'] = {'rating': round(mean, 2), 'count': N}
+        mean = round((s / N), 2)
+        movie['twitter'] = {'rating': mean, 'count': N}
 
         # 総合スコア計算
         count = 0
@@ -96,8 +97,8 @@ def main():
             twitter_c = movie['twitter']['count']
             count += twitter_c
             rating_w += movie['twitter']['rating'] * twitter_c
-        rating = rating_w / count
-        movie['total'] = {'rating': round(rating, 2), 'count': count}
+        rating = round((rating_w / count), 2)
+        movie['total'] = {'rating': rating, 'count': count}
 
     with open('movies.pickle', 'wb') as f:
         pickle.dump(movies, f)
