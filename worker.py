@@ -1,6 +1,7 @@
 import re
 import numpy
 import pickle
+import sys
 import movielist
 import moviescores
 import twittersearch
@@ -31,6 +32,7 @@ def normalize_num(num_list, maximum=1):
 
 
 def main():
+    sys.setrecursionlimit(10000)
     # 作品リスト取得
     movies = movielist.movie_list()
     for movie in movies:
