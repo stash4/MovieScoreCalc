@@ -1,4 +1,5 @@
 import re
+import numpy
 import movielist
 import moviescores
 import twittersearch
@@ -43,6 +44,16 @@ def main():
                 score = negaposi.get_nega_posi(tweet_text, pn_dict)
                 tw = {'url': tw_url, 'text': tw_text, 'score': score}
                 movie['tweets'].append(tw)
+
+    # ツイートのスコア計算
+        scores = []
+        for tweet in movie['tweet']:
+            scores.append(tweet['score'])
+        s = numpy.array(scores)
+        smin = s.min()
+        smax = s.max()
+        n_scores = (s - smax).astype(float) / (smax - smin).astype(float)
+        scores = list(n_scores * 5)
 
 
 if __name__ == '__main__':
