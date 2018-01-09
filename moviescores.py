@@ -5,6 +5,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import urllib.parse
 
 sites = {
     'EIGA': 'eiga.com',
@@ -70,13 +71,19 @@ def movies_yahoo(movie_name):
     Yahoo!映画から作品のスコア、レビュー数を取得する。
     '''
     try:
-        pass
-        res = get_page(f'{movie_name} 作品', sites['YAHOO'])
+        # res = get_page(f'{movie_name} 作品', sites['YAHOO'])
+        q = urllib.parse.quote(movie_name)
+        result = requests.get(f'https://movies.yahoo.co.jp/search/?query={q}')
+        result_sp = BeautifulSoup(result.text, 'html.parser')
+        href = result_sp.find(id='rsltmv').select('a')[0].get('href')
+        url = f'https://movies.yahoo.co.jp{href}'
 
-        soup = BeautifulSoup(res.text, 'html.parser')
+        detail = requests.get(url)
+        detail_sp = BeautifulSoup(detail.text, 'html.parser')
+
         # レビュースコア
-        rating = soup.find(itemprop='ratingValue').string
-        count = soup.find(class_='rating-score').find(class_='text-xsmall').string
+        rating = detail_sp.find(itemprop='ratingValue').string
+        count = detail_sp.find(class_='rating-score').find(class_='text-xsmall').string
         # レビュー数
         pattern = r'\d+'
         count = re.search(pattern, count).group(0)
