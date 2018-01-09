@@ -56,7 +56,7 @@ def movies_yahoo(movie_name):
     '''
     Yahoo!映画から作品のスコア、レビュー数を取得する。
     '''
-    res = get_page(movie_name, sites['YAHOO'])
+    res = get_page(f'{movie_name}+作品', sites['YAHOO'])
 
     soup = BeautifulSoup(res.text, 'html.parser')
     # レビュースコア
