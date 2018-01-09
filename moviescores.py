@@ -108,11 +108,16 @@ def filmarks_com(movie_name):
     Filmarksから作品のスコア、レビュー数を取得する。
     '''
     try:
-        res = get_page(f'{movie_name} 映画情報', sites['FILMARKS'])
+        q = urllib.parse.quote(movie_name)
+        result = requests.get(f'https://filmarks.com/search/movies?q={q}')
+        result_sp = BeautifulSoup(result.text, 'html.parser')
+        href = result_sp.find(class_='p-movies-grid').select('a')[0].get('href')
+        url = f'https://filmarks.com{href}'
 
-        soup = BeautifulSoup(res.text, 'html.parser')
+        detail = requests.get(url)
+        detail_sp = BeautifulSoup(detail.text, 'html.parser')
         # レビュースコアとレビュー数
-        desc = soup.find(property='og:description').get('content')
+        desc = detail_sp.find(property='og:description').get('content')
         pattern = r'\d+(?:\.\d+)?'
         ratings = re.findall(pattern, desc)
 
