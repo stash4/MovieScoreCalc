@@ -60,7 +60,7 @@ def main():
 
     # ツイートのスコア計算
         scores = []
-        for tweet in movie['tweet']:
+        for tweet in movie['tweets']:
             scores.append(tweet['score'])
         n_scores = normalize_num(scores, maximum=5)
         s = sum(n_scores)
