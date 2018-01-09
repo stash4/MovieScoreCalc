@@ -43,17 +43,23 @@ def eiga_com(movie_name):
     映画.comから作品のタイトル、公開日、スコア、レビュー数を取得する。
     '''
     try:
-        res = get_page(f'{movie_name} 作品情報', sites['EIGA'])
+        # サイト内検索
+        q = urllib.parse.quote(movie_name)
+        result = requests.get(f'http://eiga.com/search/{q}/')
+        result_sp = BeautifulSoup(result.text, 'html.parser')
+        href = result_sp.find(id='rslt-movie').select('a')[0].get('href')
+        url = f'http://eiga.com{href}'
 
-        soup = BeautifulSoup(res.text, 'html.parser')
+        detail = requests.get(url)
+        detail_sp = BeautifulSoup(detail.text, 'html.parser')
         # タイトル
-        name = soup.find(itemprop='name').string
+        name = detail_sp.find(itemprop='name').string
         # 公開日
-        date = soup.find(itemprop='datePublished').get('content')
+        date = detail_sp.find(itemprop='datePublished').get('content')
         # レビュースコア
-        rating = soup.find(itemprop='ratingValue').string
+        rating = detail_sp.find(itemprop='ratingValue').string
         # レビュー数
-        count = soup.find(itemprop='reviewCount').string
+        count = detail_sp.find(itemprop='reviewCount').string
 
         ret = {
             'name': name,
