@@ -97,6 +97,8 @@ def main():
         rating = rating_w / count
         movie['total'] = {'rating': round(rating, 2), 'count': count}
 
+    with open('movies.pickle', 'wb') as f:
+        pickle.dump(movies, f)
 
 if __name__ == '__main__':
     main()
