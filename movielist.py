@@ -17,13 +17,13 @@ def movie_list():
         mcode = movie['mcode']
         desc, name_en = tohocinemas.movie_desc(mcode)
         im_url = tohocinemas.movie_image_url(movie)
-        if '正式タイトル：' in desc:
+        if '正式タイトル' in desc:
             pattern = r'(正式タイトル[：?|:])(.*)(<br/?>)'
             s = re.search(pattern, desc)
             name = s.group(2)
             desc = desc.replace(s.group(0), '')
-            tag_p = r'<.*?>'
-            desc = re.sub(tag_p, '', desc)
+        tag_p = r'<.*?>'
+        desc = re.sub(tag_p, '', desc)
 
         movies.append({
             'name': name,
