@@ -35,3 +35,14 @@ def movie_desc(mcode):
     desc = detail_soup.find(property='og:description').get('content')
     name_en = detail_soup.find(class_='en theater-detail-word-break').string
     return desc, name_en
+
+
+def movie_image_url(movie):
+    '''
+    映画の画像urlを生成する。
+    https://hlo.tohotheater.jp/images_net/movie/:m_code/:file_name
+    '''
+    mcode = movie['mcode']
+    file_name = movie['sakuhinGazouNm']
+    url = f'https://hlo.tohotheater.jp/images_net/movie/{mcode}/{file_name}'
+    return url
