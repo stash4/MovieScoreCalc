@@ -13,13 +13,13 @@ def movie_list():
     movies = []
     for movie in showing['data']:
         name = unicodedata.normalize('NFKC', movie['name'])
-        desc = tohocinemas.movie_desc(movie['mcode'])
+        desc, name_en = tohocinemas.movie_desc(movie['mcode'])
         if '<br>' in desc:
             if '正式タイトル：' in desc:
                 name, desc = desc.split('正式タイトル：')[1].split('<br>')
             else:
                 desc = desc.split('<br>')[1]
-        movies.append({'name': name, 'desc': desc})
+        movies.append({'name': name, 'desc': desc, 'name_en': name_en})
 
     return movies
 
