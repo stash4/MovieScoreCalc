@@ -82,6 +82,7 @@ def main():
         count = 0
         rating_w = 0
         if 'eiga' in movie:
+            movie['name'] = movie['eiga']['name']
             eiga_c = movie['eiga']['count']
             count += eiga_c
             rating_w += movie['eiga']['rating'] * eiga_c
