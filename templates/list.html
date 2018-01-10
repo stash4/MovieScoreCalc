@@ -9,7 +9,7 @@
         <h1 class="mdc-card__title mdc-card__title--large">{{ movie['name'] }}</h1>
         <h2 class="mdc-card__subtitle">{{ movie['name_en'] }}</h2>
       </section>
-      <img class="mdc-card__media-item mdc-card__media-item--1dot5x" src="images/1-1.jpg">
+      <img class="mdc-card__media-item mdc-card__media-item--2x" src="{{ movie['image'] }}">
     </div>
     <section class="mdc-card__actions">
       {% if 'eiga' in movie %}
