@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Greeting App</title>
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+</head>
+
+<body class="mdc-typography">
+  <div class="container">
+    <div class="mdc-layout-grid">
+
+      {% block content %} {% endblock %}
+
+    </div>
+  </div>
+  <style>
+    .container {
+      margin:5px 15%;
+    }
+  </style>
+</body>
+
+</html>

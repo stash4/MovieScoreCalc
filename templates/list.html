@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 class="mdc-typography--display1">Now Showing</h1>
+{% for movie in movies %}
+<div>
+  <div class="mdc-card demo-card">
+    <div class="mdc-card__horizontal-block">
+      <section class="mdc-card__primary">
+        <h1 class="mdc-card__title mdc-card__title--large">{{ movie['name'] }}</h1>
+        <h2 class="mdc-card__subtitle">{{ movie['name_en'] }}</h2>
+        <p></p>
+        <h2 class="mdc-card__subtitle">{{ movie['desc'] }}</h2>
+      </section>
+      <img class="mdc-card__media-item mdc-card__media-item--2x" src="{{ movie['image'] }}">
+    </div>
+    <section class="mdc-card__actions">
+      {% if 'eiga' in movie %}
+      <a href="{{ movie['eiga']['url'] }}" target="_blank" class="mdc-button mdc-button--compact mdc-card__action">映画.com: {{ movie['eiga']['rating'] }}</a>
+      {% endif %}
+      {% if 'yahoo' in movie %}
+      <a href="{{ movie['yahoo']['url'] }}" target="_blank" class="mdc-button mdc-button--compact mdc-card__action">Yahoo!映画: {{ movie['yahoo']['rating'] }}</a>
+      {% endif %}
+      {% if 'filmarks' in movie %}
+      <a href="{{ movie['filmarks']['url'] }}" target="_blank" class="mdc-button mdc-button--compact mdc-card__action">filmarks: {{ movie['filmarks']['rating'] }}</a>
+      {% endif %}
+      {% if 'twitter' in movie %}
+      <a class="mdc-button mdc-button--compact mdc-card__action">Twitter: {{ movie['twitter']['rating'] }}</a>
+      {% endif %}
+      {% if 'total' in movie %}
+      <a class="mdc-typography--title mdc-button mdc-button--compact mdc-card__action">Total Score: {{ movie['total']['rating'] }} <small>/ 5.0</small></a>
+      {% endif %}
+    </section>
+  </div>
+</div>
+{% endfor %}
+<style>
+  :root {
+    --mdc-theme-primary: #0e4ead;
+    --mdc-theme-secondary: #0060e6;
+  }
+</style>
+{% endblock %}
