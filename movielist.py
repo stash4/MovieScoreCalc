@@ -3,6 +3,7 @@ TOHOシネマズの上映中作品リストを取得する。
 '''
 import tohocinemas
 import unicodedata
+import re
 
 
 def movie_list():
@@ -15,11 +16,14 @@ def movie_list():
         name = unicodedata.normalize('NFKC', movie['name'])
         desc, name_en = tohocinemas.movie_desc(movie['mcode'])
         im_url = tohocinemas.movie_image_url(movie)
-        if '<br>' in desc:
-            if '正式タイトル：' in desc:
-                name, desc = desc.split('正式タイトル：')[1].split('<br>')
-            else:
-                desc = desc.split('<br>')[1]
+        if '正式タイトル：' in desc:
+            pattern = r'(正式タイトル[：?|:])(.*)(<br/?>)'
+            s = re.search(pattern, desc)
+            name = s.group(2)
+            desc = desc.replace(s.group(0), '')
+            tag_p = r'<.*?>'
+            desc = re.sub(tag_p, '', desc)
+
         movies.append({
             'name': name,
             'desc': desc,
