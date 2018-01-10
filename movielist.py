@@ -14,7 +14,8 @@ def movie_list():
     movies = []
     for movie in showing['data']:
         name = unicodedata.normalize('NFKC', movie['name'])
-        desc, name_en = tohocinemas.movie_desc(movie['mcode'])
+        mcode = movie['mcode']
+        desc, name_en = tohocinemas.movie_desc(mcode)
         im_url = tohocinemas.movie_image_url(movie)
         if '正式タイトル：' in desc:
             pattern = r'(正式タイトル[：?|:])(.*)(<br/?>)'
@@ -28,7 +29,8 @@ def movie_list():
             'name': name,
             'desc': desc,
             'name_en': name_en,
-            'image': im_url})
+            'image': im_url,
+            'mcode': mcode})
 
     return movies
 
