@@ -27,7 +27,7 @@
       <a class="mdc-button mdc-button--compact mdc-card__action">Twitter: {{ movie['twitter']['rating'] }}</a>
       {% endif %}
       {% if 'total' in movie %}
-      <a class="mdc-typography--title mdc-button mdc-button--compact mdc-card__action">Total Score: {{ movie['total']['rating'] }}</a>
+      <a class="mdc-typography--title mdc-button mdc-button--compact mdc-card__action">Total Score: {{ movie['total']['rating'] }} <small>/ 5.0</small></a>
       {% endif %}
     </section>
   </div>
