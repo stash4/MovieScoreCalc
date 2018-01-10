@@ -33,7 +33,7 @@ def normalize_num(num_list, maximum=1):
 
 
 def main():
-    sys.setrecursionlimit(10000)
+    sys.setrecursionlimit(100000)
     # 作品リスト取得
     movies = movielist.movie_list()
     for movie in movies:
@@ -53,7 +53,7 @@ def main():
         opt = '-source:filmarks -source:twittbot.net -filter:verified'
         q = f'{movie["name"]} {opt}'
         since_date = movie['eiga']['date'] if 'eiga' in movie else ''
-        tweets = twittersearch.search(q, since=since_date, count=200)
+        tweets = twittersearch.search(q, since=since_date, count=100)
 
         # 各ツイートのネガポジ判定
         movie['tweets'] = []
