@@ -13,19 +13,19 @@
     </div>
     <section class="mdc-card__actions">
       {% if 'eiga' in movie %}
-      <a href="{{ movie['eiga']['url'] }}" target="_blank" class="mdc-button mdc-button--compact mdc-card__action">映画.com {{ movie['eiga']['rating'] }}</a>
+      <a href="{{ movie['eiga']['url'] }}" target="_blank" class="mdc-button mdc-button--compact mdc-card__action">映画.com: {{ movie['eiga']['rating'] }}</a>
       {% endif %}
       {% if 'yahoo' in movie %}
-      <a href="{{ movie['yahoo']['url'] }}" target="_blank" class="mdc-button mdc-button--compact mdc-card__action">Yahoo!映画 {{ movie['yahoo']['rating'] }}</a>
+      <a href="{{ movie['yahoo']['url'] }}" target="_blank" class="mdc-button mdc-button--compact mdc-card__action">Yahoo!映画: {{ movie['yahoo']['rating'] }}</a>
       {% endif %}
       {% if 'filmarks' in movie %}
-      <a href="{{ movie['filmarks']['url'] }}" target="_blank" class="mdc-button mdc-button--compact mdc-card__action">filmarks.com {{ movie['filmarks']['rating'] }}</a>
+      <a href="{{ movie['filmarks']['url'] }}" target="_blank" class="mdc-button mdc-button--compact mdc-card__action">filmarks: {{ movie['filmarks']['rating'] }}</a>
       {% endif %}
       {% if 'twitter' in movie %}
-      <button class="mdc-button mdc-button--compact mdc-card__action">Twitter {{ movie['twitter']['rating'] }}</button>
+      <a class="mdc-button mdc-button--compact mdc-card__action">Twitter: {{ movie['twitter']['rating'] }}</a>
       {% endif %}
       {% if 'total' in movie %}
-      <button class="mdc-typography--title mdc-button mdc-button--compact mdc-card__action">Total {{ movie['total']['rating'] }}</button>
+      <a class="mdc-typography--title mdc-button mdc-button--compact mdc-card__action">Total Score: {{ movie['total']['rating'] }}</a>
       {% endif %}
     </section>
   </div>
