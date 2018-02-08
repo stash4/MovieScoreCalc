@@ -12,7 +12,7 @@ flask = "*"
 numpy = "*"
 requests = "*"
 requests-oauthlib = "*"
-"pep8" = "*"
+"flake8" = "*"
 "autopep8" = "*"
 
 
