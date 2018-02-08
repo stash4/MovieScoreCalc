@@ -1,0 +1,8 @@
+__pycache__/
+PN_TABLE/pn.csv.m3.120408.trim
+PN_TABLE/wago.121808.pn
+settings.py
+
+.vscode/
+
+*.pickle
